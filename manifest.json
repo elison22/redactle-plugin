@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Redactle Word Groups",
+  "version": "0.1.0",
+  "description": "Save named word groups and submit them through Redactle's normal guess controls.",
+  "permissions": ["storage", "declarativeContent"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Redactle Word Groups",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://redactle.net/*"],
+      "js": ["core.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

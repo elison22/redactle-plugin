@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redactle Word Groups — Settings</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="core.js" defer></script>
+  <script src="options.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Redactle Word Groups</h1>
+    <div class="layout">
+      <aside>
+        <h2>Your groups</h2>
+        <ul id="group-list"></ul>
+        <button id="new-group" type="button">New group</button>
+      </aside>
+      <form id="editor">
+        <div class="field">
+          <label for="name">Group name</label>
+          <input id="name" maxlength="100" required placeholder="Biology">
+        </div>
+        <div class="field">
+          <label for="words">Guesses</label>
+          <textarea id="words" required spellcheck="false" placeholder="cell organism species"></textarea>
+          <p class="hint">Separate guesses with any whitespace (spaces, tabs, or newlines). Commas stay inside a guess. Order is preserved; duplicates within this group are removed when saved.</p>
+          <span id="word-count" class="hint"></span>
+        </div>
+        <div class="row">
+          <button class="primary" type="submit">Save group</button>
+          <button id="delete-group" class="danger" type="button" disabled>Delete group</button>
+        </div>
+      </form>
+    </div>
+    <hr>
+    <form id="pacing">
+      <h2>Guess pacing</h2>
+      <label for="delay">Minimum milliseconds per guess</label>
+      <input id="delay" type="number" min="100" max="5000" step="1" required value="500">
+      <p class="hint">500 ms worked in initial testing. Lower values may be unreliable. Processing can take longer than this setting; the runner also waits for the input to clear.</p>
+      <button type="submit">Save pacing</button>
+    </form>
+    <hr>
+    <h2>Backup</h2>
+    <div class="row">
+      <button id="export" type="button">Export JSON</button>
+      <button id="import" type="button">Import JSON</button>
+    </div>
+    <input id="import-file" type="file" accept=".json,application/json" hidden>
+    <p class="hint">Import replaces all groups and pacing after confirmation. Data stays in this browser profile unless you export it.</p>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>
